@@ -1,4 +1,5 @@
-import React from 'react'
+import { LoginUseEffet } from './UseEffect'
+import { LoginState, LoginStateProps, LoginStatePropsCheck } from './UseState'
 
 const Hooks = () => {
   return (
@@ -11,7 +12,14 @@ const Hooks = () => {
           <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
             UseState
           </h4>
-          <div></div>
+          <LoginState />
+          <LoginStateProps />
+          <LoginStateProps initialEmail="contact@bamba.com" />
+          <LoginStatePropsCheck initialEmail="contact@bamba.com" />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            UseEffet
+          </h4>
+          <LoginUseEffet initialEmail="contact@bamba.com" />
         </div>
       </div>
     </>
