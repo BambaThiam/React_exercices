@@ -1,4 +1,6 @@
-import { LoginUseEffet } from './UseEffect'
+import { EmojiSearch } from './EmojiApp/EmojiApp'
+import { LiftingState } from './LiftingState'
+import { Depend_Props, LoginUseEffet } from './UseEffect'
 import { LoginState, LoginStateProps, LoginStatePropsCheck } from './UseState'
 
 const Hooks = () => {
@@ -20,6 +22,15 @@ const Hooks = () => {
             UseEffet
           </h4>
           <LoginUseEffet initialEmail="contact@bamba.com" />
+          <Depend_Props />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Lifting State
+          </h4>
+          <LiftingState />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Mini appli EmojiList
+          </h4>
+          <EmojiSearch />
         </div>
       </div>
     </>
