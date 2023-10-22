@@ -19,13 +19,13 @@ const Header = ({ nbFound }) => {
 // SearchInput
 // 🐶 Crée une fonction onChange qui appelera la fonction onTextChange passée en props
 const SearchInput = ({ onTextChange }) => {
-  const onChange = (event) => {
+  const handleChange = (event) => {
     onTextChange(event.target.value)
   }
   return (
     <div>
       <div>
-        <input type="text" onChange={onChange} />
+        <input type="text" onChange={handleChange} className="border-2 " />
       </div>
     </div>
   )
@@ -59,7 +59,7 @@ const EmojiResultRow = ({ symbol, title }) => {
     <div className="" data-clipboard-text={symbol}>
       {symbol}
       <span>{title}</span>
-      <span>Copier</span>
+      <span> copier</span>
     </div>
   )
 }
