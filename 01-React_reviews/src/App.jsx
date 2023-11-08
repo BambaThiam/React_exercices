@@ -1,6 +1,7 @@
 import React from 'react'
 import Patterns_Courant from './05_Patterns_courants/Patterns_Courant'
 import Hooks from './06_Hooks/Hooks'
+import UseEffetHTTP1 from './06_Hooks/UseEffetHTTP1'
 
 function App() {
   return (
