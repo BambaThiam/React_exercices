@@ -1,3 +1,4 @@
+import Challenge from './Challenge'
 import { EmojiSearch } from './EmojiApp/EmojiApp'
 import { LiftingState } from './LiftingState'
 import { Depend_Props, LoginUseEffet } from './UseEffect'
@@ -41,6 +42,10 @@ const Hooks = () => {
             useEffet : appels HTTP avancées
           </h4>
           <UseEffetHTTP2 />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Hooks: Challenge
+          </h4>
+          <Challenge />
         </div>
       </div>
     </>
