@@ -41,6 +41,7 @@ const UseEffetHTTP1 = () => {
         vers le service `algolia` est fait pour afficher une liste d'articles
         avec un lien vers cet article.
       </h6>
+      <h6>-------------------------------------</h6>
       <label>Rechercher</label>
       <input
         type="text"

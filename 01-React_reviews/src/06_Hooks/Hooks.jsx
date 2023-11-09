@@ -2,6 +2,7 @@ import { EmojiSearch } from './EmojiApp/EmojiApp'
 import { LiftingState } from './LiftingState'
 import { Depend_Props, LoginUseEffet } from './UseEffect'
 import UseEffetHTTP1 from './UseEffetHTTP1'
+import UseEffetHTTP2 from './UseEffetHTTP2'
 import { LoginState, LoginStateProps, LoginStatePropsCheck } from './UseState'
 
 const Hooks = () => {
@@ -36,6 +37,10 @@ const Hooks = () => {
             useEffet : appels HTTP simples
           </h4>
           <UseEffetHTTP1 />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            useEffet : appels HTTP avancées
+          </h4>
+          <UseEffetHTTP2 />
         </div>
       </div>
     </>
