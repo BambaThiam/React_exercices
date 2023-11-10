@@ -1,5 +1,6 @@
 import React from 'react'
 import UseReduce from './UseReduce'
+import HooksPersonnalises from './HooksPersonnalises'
 
 const HooksAvances = () => {
   return (
@@ -13,6 +14,10 @@ const HooksAvances = () => {
             UseReduce
           </h4>
           <UseReduce />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Hooks personnalisés
+          </h4>
+          <HooksPersonnalises />
         </div>
       </div>
     </>
