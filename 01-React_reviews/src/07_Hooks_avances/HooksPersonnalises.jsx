@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import {
   MarvelPersoView,
-  fetchMarvelById,
   fetchMarvelsList,
   fetchMarvel,
   MarvelSearchForm,
