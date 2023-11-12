@@ -7,7 +7,8 @@ import * as React from 'react'
 // clef limité à 3000 appels par jour
 
 // const marvelApiKey = '6bcc5c7ff0ad488fb58f759c4069964c'
-const marvelApiKey = '5a4bd353e754599ed13518c2f87509df'
+// const marvelApiKey = '5a4bd353e754599ed13518c2f87509df'
+const marvelApiKey = '003b4d5e37d21bb13eab5c996a5b79c6'
 
 const myHeader = new Headers({
   'Content-Type': 'application/x-www-form-urlencoded',
