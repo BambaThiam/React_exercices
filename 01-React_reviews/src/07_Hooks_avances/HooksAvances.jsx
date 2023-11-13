@@ -3,6 +3,7 @@ import UseReduce from './UseReduce'
 import HooksPersonnalises from './HooksPersonnalises'
 import UseCallback from './useCallback'
 import UseContext from './UseContext'
+import ChallengeHooksAvances from './Challenge/ChallengeHook'
 
 const HooksAvances = () => {
   return (
@@ -28,6 +29,10 @@ const HooksAvances = () => {
             UseContext
           </h4>
           <UseContext />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Challenge Hooks Avancés
+          </h4>
+          <ChallengeHooksAvances />
         </div>
       </div>
     </>

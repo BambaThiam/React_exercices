@@ -22,12 +22,22 @@ const MarvelCacheContext = createContext()
 
 // 🐶 Créé un reducer 'marvelCacheReducer' pour gérer les données en cache
 const marvelCacheReducer = (state, action) => {
+  //   const ttl = 1_000 * 60 * 60 // 1 heure
+  const ttl = 1_000 * 10 // 10 seconde
+  const expire = Date.now() + ttl
   switch (action.type) {
     case 'ADD_MARVEL': {
-      return { ...state, [action.marvelName]: action.marvelData }
+      //   return { ...state, [action.marvelName]: action.marvelData }
+      return {
+        ...state,
+        [action.marvelName]: { data: action.marvelData, expire },
+      }
     }
     case 'ADD_MARVEL_LIST': {
-      return { ...state, [`${action.marvelName}-list`]: action.marvelData }
+      return {
+        ...state,
+        [`${action.marvelName}-list`]: { data: action.marvelData, expire },
+      }
     }
     default: {
       throw new Error(`action impossible: ${action.type}`)
@@ -108,8 +118,11 @@ function useFindMarvelList(marvelName) {
   React.useEffect(() => {
     if (!marvelName) {
       return
-    } else if (cache[`${marvelName}-list`]) {
-      setData(cache[`${marvelName}-list`])
+    } else if (
+      cache[`${marvelName}-list`]?.data &&
+      Date.now() < cache[`${marvelName}-list`].expire
+    ) {
+      setData(cache[`${marvelName}-list`].data)
     } else {
       execute(
         fetchMarvelsList(marvelName).then((marvelData) => {
@@ -132,8 +145,11 @@ function useFindMarvelByName(marvelName) {
   React.useEffect(() => {
     if (!marvelName) {
       return
-    } else if (cache[marvelName]) {
-      setData(cache[marvelName])
+    } else if (
+      cache[marvelName]?.data &&
+      Date.now() < cache[marvelName].expire
+    ) {
+      setData(cache[marvelName].data)
     } else {
       execute(
         fetchMarvel(marvelName).then((marvelData) => {
