@@ -1,48 +1,10 @@
 //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { FindMeal } from './HookPerso'
-
-const FetchMeal = ({ mealName }) => {
-  const [meal, setMeal] = useState([])
-  const [error, setError] = useState(null)
-  useEffect(() => {
-    if (!mealName) {
-      return
-    }
-    setMeal([])
-
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
-      .then((response) => response.json())
-      .then((json) => setMeal(json))
-      .catch((error) => setError(error))
-  }, [mealName])
-
-  if (!mealName) {
-    return <div>Entrer un nom de plat</div>
-  }
-
-  if (error) {
-    throw error
-  }
-  // console.log('les plats', meal?.meals)
-  return meal?.meals ? (
-    <div>
-      {meal?.meals.map((item) => (
-        <div key={item.idMeal}>
-          <img src={item.strMealThumb} alt={item.strMeal} />
-          <div>Catégorie : {item.strCategory}</div>
-          <div>Pays : {item.strArea}</div>
-          <div>Catégorie : {item.strCategory}</div>
-          <a href={item.strYoutube}>Youtube</a>
-        </div>
-      ))}
-    </div>
-  ) : (
-    <div>Rien trouvé ...</div>
-  )
-}
+import { FindMealReduce } from './Reducer'
+import { ThemeContext, ThemeProviderContext } from './Context'
 
 function ErrorDisplay({ error }) {
   return (
@@ -53,7 +15,7 @@ function ErrorDisplay({ error }) {
   )
 }
 
-const InputSearch = ({ setMeal }) => {
+export const InputSearch = ({ setMeal }) => {
   let searchTimeOut
   const handleSearch = (mealSearch) => {
     if (searchTimeOut) clearTimeout(searchTimeOut) // nettoyage du searchTimeOut
@@ -67,6 +29,7 @@ const InputSearch = ({ setMeal }) => {
       type="text"
       // value={mealName}
       onChange={(event) => handleSearch(event.target.value)}
+      placeholder="Saisir ici..."
       className="border-2 border-sky-300"
     />
   )
@@ -100,8 +63,15 @@ const ChallengeHooksAvances = () => {
         <div>
           <ErrorBoundary key={mealName} FallbackComponent={ErrorDisplay}>
             <InputSearch setMeal={setMealName} />
+            <h6>
+              Avec un hook personnalisé -------------------------------------
+            </h6>
             <FindMeal mealName={mealName} />
-            <FetchMeal mealName={mealName} />
+            <h6>Avec un reducer -------------------------------------</h6>
+            <FindMealReduce mealName={mealName} />
+
+            <h6>Avec un contextAPI -------------------------------------</h6>
+            <ThemeProviderContext mealName={mealName} />
           </ErrorBoundary>
         </div>
       </div>

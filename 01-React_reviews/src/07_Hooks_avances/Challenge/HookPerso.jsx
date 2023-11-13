@@ -9,7 +9,7 @@ const useMealExist = (mealName) => {
     }
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
       .then((response) => response.json())
-      //   .then((json) => setMealExist(json.meals !== null))
+
       .then((json) => setMealExist(json.meals !== null))
     console.log(mealExist)
   })

@@ -3,6 +3,7 @@ import Patterns_Courant from './05_Patterns_courants/Patterns_Courant'
 import Hooks from './06_Hooks/Hooks'
 import UseEffetHTTP1 from './06_Hooks/UseEffetHTTP1'
 import HooksAvances from './07_Hooks_avances/HooksAvances'
+import PatternsAvances from './08_Patterns_avances/PatternsAvances'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Patterns_Courant />
         <Hooks />
         <HooksAvances />
+        <PatternsAvances />
       </div>
     </>
   )
