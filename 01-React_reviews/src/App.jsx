@@ -4,6 +4,7 @@ import Hooks from './06_Hooks/Hooks'
 import UseEffetHTTP1 from './06_Hooks/UseEffetHTTP1'
 import HooksAvances from './07_Hooks_avances/HooksAvances'
 import PatternsAvances from './08_Patterns_avances/PatternsAvances'
+import Rereview from './99-Rereview/Rereview'
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Hooks />
         <HooksAvances />
         <PatternsAvances />
+      </div>
+      <div>
+        <Rereview />
       </div>
     </>
   )
