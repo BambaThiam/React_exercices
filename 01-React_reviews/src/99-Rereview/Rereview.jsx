@@ -1,5 +1,6 @@
 import React from 'react'
 import PizzaMenu from './PizzaMenu'
+import Step from './Step'
 
 const Rereview = () => {
   return (
@@ -13,6 +14,10 @@ const Rereview = () => {
             Pizza Menu
           </h4>
           <PizzaMenu />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Step
+          </h4>
+          <Step />
         </div>
       </div>
     </>
