@@ -2,6 +2,7 @@ import React from 'react'
 import CheckBox from './Checkbox'
 import ComposantsCompTab from './ComposantsCompTab'
 import ComposantsCompImbr from './ComposantsCompImbr'
+import ComposantsCompSupEnfant from './ComposantsCompSupEnfant'
 
 // 🐶 transforme 'CompoundComponentParent' en vrai composant composé
 function CompoundComponentParent({ children }) {
@@ -90,6 +91,12 @@ const ComposantsComposes = () => {
       </h6>
       <h6>------------------Composant Composés imbriqués-------------------</h6>
       <ComposantsCompImbr />
+      <h6>
+        4- On pourrait avoir envie d'avoir un enfant "autre" dans le composant
+        composé.
+      </h6>
+      <h6>------------------Supporter un enfant "autre"-------------------</h6>
+      <ComposantsCompSupEnfant />
     </div>
   )
 }
