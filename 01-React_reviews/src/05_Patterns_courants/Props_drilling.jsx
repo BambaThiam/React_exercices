@@ -1,7 +1,7 @@
 export function Header({ siteName, nbMessages }) {
   return (
     <>
-      <h1>Bienvenue sur {siteName} </h1>
+      <h3>Bienvenue sur {siteName} </h3>
       <Login siteName={siteName} />
       <MenuBarInfo nbMessages={nbMessages} />
     </>

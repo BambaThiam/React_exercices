@@ -3,14 +3,13 @@ import PizzaMenu from './PizzaMenu'
 import Step from './Step'
 import StepOpen from './StepOpen'
 import DayCounter from './DayCounter'
+import TravelList from './TravelList'
 
 const Rereview = () => {
   return (
     <>
       <div className="m-10 flex flex-col gap-10 border-2 m-4 p-4">
-        <h3 className="text-3xl m-4 underline decoration-sky-500 ">
-          Rereview base react
-        </h3>
+        <h1>Rereview base react</h1>
         <div className="flex flex-col gap-4">
           <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
             Pizza Menu
@@ -28,6 +27,10 @@ const Rereview = () => {
             Day Counter
           </h4>
           <DayCounter />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Travel List APP
+          </h4>
+          <TravelList />
         </div>
       </div>
     </>

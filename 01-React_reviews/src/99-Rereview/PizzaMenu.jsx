@@ -4,11 +4,10 @@ import './data/PizzaDataMenu/index.css'
 
 const Header = () => {
   // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
-  const style = {}
 
   return (
     <header className="header">
-      <h1 style={style}>Fast React Pizza Co.</h1>
+      <h2>Fast React Pizza Co.</h2>
     </header>
   )
 }

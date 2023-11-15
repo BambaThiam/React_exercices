@@ -10,7 +10,7 @@ const Header = ({ nbFound }) => {
   // 🐶 Fais en sorte que le Header affiche 'Aucun résultat' ou 'X emojis trouvés' en fonction de nbFound
   return (
     <div>
-      <h1>Bienvenue sur EmojiApp</h1>
+      <h3>Bienvenue sur EmojiApp</h3>
       <div>{nbFound > 0 ? `${nbFound} émojis trouvés` : `Aucun résultat`}</div>
     </div>
   )
