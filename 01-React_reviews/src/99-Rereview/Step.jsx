@@ -24,6 +24,11 @@ const Step = () => {
 
   return (
     <div className="steps">
+      <h3>
+        Hint : On change l'état du state (step : 1 - 2 - 3) par une fonction
+        avec les cliques puis on applique le style qui convient d'une manière
+        conditionnelle en fonction du state maj
+      </h3>
       <div className="numbers">
         <div className={`number ${step >= 1 ? 'active' : ''}`}>1</div>
         <div className={`number ${step >= 2 ? 'active' : ''}`}>2</div>
