@@ -4,6 +4,7 @@ import Step from './Step'
 import StepOpen from './StepOpen'
 import DayCounter from './DayCounter'
 import TravelList from './TravelList'
+import FlashCard from './FlashCard'
 
 const Rereview = () => {
   return (
@@ -31,6 +32,10 @@ const Rereview = () => {
             Travel List APP
           </h4>
           <TravelList />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Flash Card APP
+          </h4>
+          <FlashCard />
         </div>
       </div>
     </>
