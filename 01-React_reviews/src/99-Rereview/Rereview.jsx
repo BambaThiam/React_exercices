@@ -6,6 +6,7 @@ import DayCounter from './DayCounter'
 import TravelList from './TravelList'
 import FlashCard from './FlashCard'
 import DayCounterBis from './DayCounterBis'
+import DayCounterTer from './DayCounterTer'
 
 const Rereview = () => {
   return (
@@ -41,6 +42,10 @@ const Rereview = () => {
             Day Counter Bis
           </h4>
           <DayCounterBis />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Day Counter Ter
+          </h4>
+          <DayCounterTer />
         </div>
       </div>
     </>
