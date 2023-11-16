@@ -5,6 +5,7 @@ import StepOpen from './StepOpen'
 import DayCounter from './DayCounter'
 import TravelList from './TravelList'
 import FlashCard from './FlashCard'
+import DayCounterBis from './DayCounterBis'
 
 const Rereview = () => {
   return (
@@ -36,6 +37,10 @@ const Rereview = () => {
             Flash Card APP
           </h4>
           <FlashCard />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Day Counter Bis
+          </h4>
+          <DayCounterBis />
         </div>
       </div>
     </>

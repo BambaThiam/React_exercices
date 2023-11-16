@@ -43,7 +43,7 @@ const FlashCard = () => {
   }
   return (
     <div>
-      <div>TODO</div>
+      <div>Click on question to check the response</div>
       <div className="flashcards">
         {questions.map((question) => (
           <div key={question.id} className="flashcard">
