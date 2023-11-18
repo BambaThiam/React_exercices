@@ -7,6 +7,7 @@ import TravelList from './TravelList'
 import FlashCard from './FlashCard'
 import DayCounterBis from './DayCounterBis'
 import DayCounterTer from './DayCounterTer'
+import TravelListBis from './TravelListBis'
 
 const Rereview = () => {
   return (
@@ -46,6 +47,10 @@ const Rereview = () => {
             Day Counter Ter
           </h4>
           <DayCounterTer />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Travel List APP - Bis : Lifting State
+          </h4>
+          <TravelListBis />
         </div>
       </div>
     </>
