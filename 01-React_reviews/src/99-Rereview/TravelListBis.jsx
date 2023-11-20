@@ -69,10 +69,38 @@ const Form = ({ onAddItems }) => {
 
 // Pour le rendu des élements
 const PackingList = ({ items, onDeleteItem, onPackedItem }) => {
+  const [sortBy, setSortBy] = useState('input')
+
+  // let sortedItems
+
+  // if (sortBy === 'input') {
+  //   sortedItems = items
+  // }
+
+  // if (sortBy === 'description') {
+  //   sortedItems = [...items].sort((a, b) =>
+  //     a.description.localeCompare(b.description)
+  //   )
+  // }
+
+  // if (sortBy === 'packed') {
+  //   sortedItems = [...items].sort((a, b) => a.packed - b.packed)
+  // }
+
+  const sortedItems = [...items].slice().sort((a, b) => {
+    if (sortBy === 'input') {
+      return a.id - b.id
+    } else if (sortBy === 'description') {
+      return a.description.localeCompare(b.description)
+    } else if (sortBy === 'packed') {
+      return a.packed - b.packed
+    }
+  })
+
   return (
     <div className="list">
       <div>
-        {items.map((item) => (
+        {sortedItems.map((item) => (
           <li key={item.id}>
             <input
               type="checkbox"
@@ -85,6 +113,13 @@ const PackingList = ({ items, onDeleteItem, onPackedItem }) => {
             <button onClick={() => onDeleteItem(item.id)}>❌</button>
           </li>
         ))}
+      </div>
+      <div className="actions text-neutral-700">
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value="input">Sorted by input order</option>
+          <option value="description">Sorted by description</option>
+          <option value="packed">Sorted by packed status</option>
+        </select>
       </div>
     </div>
   )
