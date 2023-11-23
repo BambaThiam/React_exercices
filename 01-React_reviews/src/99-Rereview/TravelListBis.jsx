@@ -68,24 +68,8 @@ const Form = ({ onAddItems }) => {
 }
 
 // Pour le rendu des élements
-const PackingList = ({ items, onDeleteItem, onPackedItem }) => {
+const PackingList = ({ items, onDeleteItem, onPackedItem, onClear }) => {
   const [sortBy, setSortBy] = useState('input')
-
-  // let sortedItems
-
-  // if (sortBy === 'input') {
-  //   sortedItems = items
-  // }
-
-  // if (sortBy === 'description') {
-  //   sortedItems = [...items].sort((a, b) =>
-  //     a.description.localeCompare(b.description)
-  //   )
-  // }
-
-  // if (sortBy === 'packed') {
-  //   sortedItems = [...items].sort((a, b) => a.packed - b.packed)
-  // }
 
   const sortedItems = [...items].slice().sort((a, b) => {
     if (sortBy === 'input') {
@@ -96,6 +80,10 @@ const PackingList = ({ items, onDeleteItem, onPackedItem }) => {
       return a.packed - b.packed
     }
   })
+
+  const handleClear = () => {
+    onClear()
+  }
 
   return (
     <div className="list">
@@ -120,6 +108,9 @@ const PackingList = ({ items, onDeleteItem, onPackedItem }) => {
           <option value="description">Sorted by description</option>
           <option value="packed">Sorted by packed status</option>
         </select>
+        <button className="btn" onClick={handleClear}>
+          Clear all
+        </button>
       </div>
     </div>
   )
@@ -160,6 +151,18 @@ const TravelListBis = () => {
   const handleDelete = (id) => {
     setItems((items) => items.filter((item) => item.id !== id))
   }
+
+  const handleClear = () => {
+    const alert = window.confirm(
+      'Are you sure you want to clear your packing list?'
+    )
+    if (alert) {
+      setItems([])
+    } else {
+      return
+    }
+  }
+
   return (
     <div>
       <Logo />
@@ -168,6 +171,7 @@ const TravelListBis = () => {
         items={items}
         onDeleteItem={handleDelete}
         onPackedItem={handlePackedItem}
+        onClear={handleClear}
       />
       <StatistiqueFooter items={items} />
     </div>

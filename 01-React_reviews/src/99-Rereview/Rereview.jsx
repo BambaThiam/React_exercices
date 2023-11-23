@@ -8,6 +8,7 @@ import FlashCard from './FlashCard'
 import DayCounterBis from './DayCounterBis'
 import DayCounterTer from './DayCounterTer'
 import TravelListBis from './TravelListBis'
+import Accordion, { faqs } from './Accordion'
 
 const Rereview = () => {
   return (
@@ -51,6 +52,10 @@ const Rereview = () => {
             Travel List APP - Bis : Lifting State
           </h4>
           <TravelListBis />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Accordion
+          </h4>
+          <Accordion data={faqs} />
         </div>
       </div>
     </>
