@@ -18,6 +18,15 @@ const Button = ({ textColor, bgColor, onClick, children }) => {
   )
 }
 
+const StepMessage = ({ step, children }) => {
+  return (
+    <p className="message">
+      <h3>Step: {step}</h3>
+      {children}
+    </p>
+  )
+}
+
 const StepChildProp = () => {
   const [step, setStep] = React.useState(1)
   const [isOpen, setIsOpen] = React.useState(true)
@@ -59,10 +68,16 @@ const StepChildProp = () => {
                 3
               </div>
             </div>
-            <p className="message">
-              {' '}
-              Step: {step} {messages[step - 1]}
-            </p>
+            <StepMessage step={step}>
+              {messages[step - 1]}{' '}
+              <Button
+                textColor="white"
+                bgColor="#7950f2"
+                onClick={() => alert(`learn how to ${messages[step - 1]}`)}
+              >
+                Learn how
+              </Button>
+            </StepMessage>
             <div className="buttons">
               <Button
                 textColor="white"

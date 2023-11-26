@@ -10,6 +10,8 @@ import DayCounterTer from './DayCounterTer'
 import TravelListBis from './TravelListBis'
 import Accordion, { faqs } from './Accordion'
 import StepChildProp from './StepChildProp'
+import AccordionChildProp from './AccordionChildProp'
+import Calculator from './Calculator'
 
 const Rereview = () => {
   return (
@@ -65,6 +67,14 @@ const Rereview = () => {
             Step Child Prop
           </h4>
           <StepChildProp />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Accordion with Children Prop
+          </h4>
+          <AccordionChildProp data={faqs} />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Tip Calculator
+          </h4>
+          <Calculator />
         </div>
       </div>
     </>
