@@ -9,6 +9,7 @@ import DayCounterBis from './DayCounterBis'
 import DayCounterTer from './DayCounterTer'
 import TravelListBis from './TravelListBis'
 import Accordion, { faqs } from './Accordion'
+import StepChildProp from './StepChildProp'
 
 const Rereview = () => {
   return (
@@ -56,6 +57,14 @@ const Rereview = () => {
             Accordion
           </h4>
           <Accordion data={faqs} />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Travel List APP - Tier : Composant séparés
+          </h4>
+          <TravelListBis />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Step Child Prop
+          </h4>
+          <StepChildProp />
         </div>
       </div>
     </>
