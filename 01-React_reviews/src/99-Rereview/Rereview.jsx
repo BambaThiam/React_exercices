@@ -12,6 +12,7 @@ import Accordion, { faqs } from './Accordion'
 import StepChildProp from './StepChildProp'
 import AccordionChildProp from './AccordionChildProp'
 import Calculator from './Calculator'
+import EatNSplit from './EatNSplit'
 
 const Rereview = () => {
   return (
@@ -75,6 +76,10 @@ const Rereview = () => {
             Tip Calculator
           </h4>
           <Calculator />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Challenge Project : Eat-N-Split : Partage de dépenses
+          </h4>
+          <EatNSplit />
         </div>
       </div>
     </>
