@@ -68,6 +68,12 @@ const Output = () => {
   const handleChangePercentageFriend = (event) => {
     setPercentageFriend(Number(event.target.value))
   }
+
+  const handleReset = () => {
+    setAmount(0)
+    setPercentagePerso(0)
+    setPercentageFriend(0)
+  }
   return (
     <div className="flex flex-col gap-4">
       <BillInput amount={amount} handleChange={handleChangeAmount} />
@@ -81,14 +87,22 @@ const Output = () => {
       />
       <div>
         <h2 className="text-5xl font-bold">
-          {`You pay : $${amount + tip} ($${amount} + ${tip} tip)`}
+          {`You pay : $${amount + tip} ($${amount} + $${tip} tip)`}
         </h2>
+      </div>
+      <div>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+          onClick={handleReset}
+        >
+          Reset
+        </button>
       </div>
     </div>
   )
 }
 
-const Reset = () => {}
+
 
 const Calculator = () => {
   return (
@@ -96,7 +110,6 @@ const Calculator = () => {
       <div>Calculator</div>
       <div>
         <Output />
-        <Reset />
       </div>
     </>
   )
