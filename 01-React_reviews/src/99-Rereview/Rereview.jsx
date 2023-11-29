@@ -77,7 +77,7 @@ const Rereview = () => {
           </h4>
           <Calculator />
           <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
-            Challenge Project : Eat-N-Split : Partage de dépenses
+            Challenge Project : Eat-N-Split
           </h4>
           <EatNSplit />
         </div>
