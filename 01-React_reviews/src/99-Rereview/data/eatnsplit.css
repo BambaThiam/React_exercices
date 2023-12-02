@@ -2,6 +2,7 @@
     --color-lightest: #fff4e6;
     --color-light: #ffe8cc;
     --color-medium: #ffa94d;
+    --color-tierce: #FFEBB3;
     --color-dark: #ff922b;
   }
   
@@ -70,7 +71,8 @@
   
   .selected,
   .sidebar li:hover {
-    background-color: var(--color-lightest);
+    /* background-color: var(--color-lightest); */
+    background-color: var(--color-tierce);
   }
   
   .sidebar li img {
