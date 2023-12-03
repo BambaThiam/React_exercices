@@ -13,6 +13,7 @@ import StepChildProp from './StepChildProp'
 import AccordionChildProp from './AccordionChildProp'
 import Calculator from './Calculator'
 import EatNSplit from './EatNSplit'
+import UsePopcorn from './UsePopcorn'
 
 const Rereview = () => {
   return (
@@ -80,6 +81,10 @@ const Rereview = () => {
             Challenge Project : Eat-N-Split
           </h4>
           <EatNSplit />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            MasterReactComponent : UsePopCorn App
+          </h4>
+          <UsePopcorn />
         </div>
       </div>
     </>
