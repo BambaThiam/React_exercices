@@ -116,7 +116,7 @@ const MovieList = ({ movies }) => {
     </ul>
   )
 }
-const ListBox = ({ movie }) => {
+const ListBox = ({ movies }) => {
   const [isOpen1, setIsOpen1] = useState(true)
   return (
     <div className="box1">
@@ -127,7 +127,7 @@ const ListBox = ({ movie }) => {
         {isOpen1 ? '–' : '+'}
       </button>
 
-      {isOpen1 && <MovieList movies={movie} />}
+      {isOpen1 && <MovieList movies={movies} />}
     </div>
   )
 }
@@ -216,10 +216,10 @@ const WatchedBox = () => {
     </div>
   )
 }
-const Main = ({ movie }) => {
+const Main = ({ movies }) => {
   return (
     <main className="main1">
-      <ListBox movie={movie} />
+      <ListBox movies={movies} />
       <WatchedBox />
     </main>
   )
@@ -232,7 +232,7 @@ const UsePopcorn = () => {
     <>
       <div className="appUsePopcorn">
         <Navbar movies={movies} />
-        <Main movie={movies} />
+        <Main movies={movies} />
       </div>
     </>
   )
