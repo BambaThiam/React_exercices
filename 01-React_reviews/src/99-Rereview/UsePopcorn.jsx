@@ -125,21 +125,41 @@ const MovieList = ({ movies }) => {
     </ul>
   )
 }
-const ListBox = ({ children }) => {
-  const [isOpen1, setIsOpen1] = useState(true)
+const Box = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(true)
   return (
     <div className="box1">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen1((open) => !open)}
-      >
-        {isOpen1 ? '–' : '+'}
+      <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
+        {isOpen ? '–' : '+'}
       </button>
 
-      {isOpen1 && children}
+      {isOpen && children}
     </div>
   )
 }
+
+// const WatchedBox = () => {
+//   const [watched, setWatched] = useState(tempWatchedData)
+//   const [isOpen2, setIsOpen2] = useState(true)
+
+//   return (
+//     <div className="box1">
+//       <button
+//         className="btn-toggle"
+//         onClick={() => setIsOpen2((open) => !open)}
+//       >
+//         {isOpen2 ? '–' : '+'}
+//       </button>
+//       {isOpen2 && (
+//         <>
+//           <WatchedSummary watched={watched} />
+
+//           <WatchedMoviesList watched={watched} />
+//         </>
+//       )}
+//     </div>
+//   )
+// }
 
 const WatchedSummary = ({ watched }) => {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating))
@@ -203,39 +223,13 @@ const WatchedMoviesList = ({ watched }) => {
   )
 }
 
-const WatchedBox = () => {
-  const [watched, setWatched] = useState(tempWatchedData)
-  const [isOpen2, setIsOpen2] = useState(true)
-
-  return (
-    <div className="box1">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen2((open) => !open)}
-      >
-        {isOpen2 ? '–' : '+'}
-      </button>
-      {isOpen2 && (
-        <>
-          <WatchedSummary watched={watched} />
-
-          <WatchedMoviesList watched={watched} />
-        </>
-      )}
-    </div>
-  )
-}
 const Main = ({ children }) => {
-  return (
-    <main className="main1">
-      {children}
-      <WatchedBox />
-    </main>
-  )
+  return <main className="main1">{children}</main>
 }
 
 const UsePopcorn = () => {
   const [movies, setMovies] = useState(tempMovieData)
+  const [watched, setWatched] = useState(tempWatchedData)
 
   return (
     <>
@@ -245,9 +239,13 @@ const UsePopcorn = () => {
           <Numresults movies={movies} />
         </Navbar>
         <Main>
-          <ListBox movies={movies}>
+          <Box movies={movies}>
             <MovieList movies={movies} />
-          </ListBox>
+          </Box>
+          <Box movies={movies}>
+            <WatchedSummary watched={watched} />
+            <WatchedMoviesList watched={watched} />
+          </Box>
         </Main>
       </div>
     </>
