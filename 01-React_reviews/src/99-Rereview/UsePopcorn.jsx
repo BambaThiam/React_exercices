@@ -51,12 +51,21 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0)
 
-const Navbar = ({ movies }) => {
+// const Navbar = ({ movies }) => {
+//   return (
+//     <nav className="nav-bar1">
+//       <Logo />
+//       <Search />
+//       <Numresults movies={movies} />
+//     </nav>
+//   )
+// }
+
+const Navbar = ({ children }) => {
   return (
     <nav className="nav-bar1">
       <Logo />
-      <Search />
-      <Numresults movies={movies} />
+      {children}
     </nav>
   )
 }
@@ -116,7 +125,7 @@ const MovieList = ({ movies }) => {
     </ul>
   )
 }
-const ListBox = ({ movies }) => {
+const ListBox = ({ children }) => {
   const [isOpen1, setIsOpen1] = useState(true)
   return (
     <div className="box1">
@@ -127,7 +136,7 @@ const ListBox = ({ movies }) => {
         {isOpen1 ? '–' : '+'}
       </button>
 
-      {isOpen1 && <MovieList movies={movies} />}
+      {isOpen1 && children}
     </div>
   )
 }
@@ -216,10 +225,10 @@ const WatchedBox = () => {
     </div>
   )
 }
-const Main = ({ movies }) => {
+const Main = ({ children }) => {
   return (
     <main className="main1">
-      <ListBox movies={movies} />
+      {children}
       <WatchedBox />
     </main>
   )
@@ -231,8 +240,15 @@ const UsePopcorn = () => {
   return (
     <>
       <div className="appUsePopcorn">
-        <Navbar movies={movies} />
-        <Main movies={movies} />
+        <Navbar>
+          <Search />
+          <Numresults movies={movies} />
+        </Navbar>
+        <Main>
+          <ListBox movies={movies}>
+            <MovieList movies={movies} />
+          </ListBox>
+        </Main>
       </div>
     </>
   )
