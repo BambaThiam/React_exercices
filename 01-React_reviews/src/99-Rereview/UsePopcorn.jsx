@@ -125,7 +125,7 @@ const MovieList = ({ movies }) => {
     </ul>
   )
 }
-const Box = ({ children }) => {
+const Box = ({ element }) => {
   const [isOpen, setIsOpen] = useState(true)
   return (
     <div className="box1">
@@ -133,7 +133,7 @@ const Box = ({ children }) => {
         {isOpen ? '–' : '+'}
       </button>
 
-      {isOpen && children}
+      {isOpen && element}
     </div>
   )
 }
@@ -239,13 +239,22 @@ const UsePopcorn = () => {
           <Numresults movies={movies} />
         </Navbar>
         <Main>
-          <Box movies={movies}>
+          <Box element={<MovieList movies={movies} />} />
+          <Box
+            element={
+              <>
+                <WatchedSummary watched={watched} />
+                <WatchedMoviesList watched={watched} />
+              </>
+            }
+          />
+          {/* <Box movies={movies}>
             <MovieList movies={movies} />
           </Box>
           <Box movies={movies}>
             <WatchedSummary watched={watched} />
             <WatchedMoviesList watched={watched} />
-          </Box>
+          </Box> */}
         </Main>
       </div>
     </>
