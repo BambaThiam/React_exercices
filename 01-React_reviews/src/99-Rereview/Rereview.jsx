@@ -15,6 +15,7 @@ import Calculator from './Calculator'
 import EatNSplit from './EatNSplit'
 import UsePopcorn from './UsePopcorn'
 import StarRating from './StarRating'
+import TextExpanderComponent from './TextExpander'
 
 const Rereview = () => {
   return (
@@ -90,6 +91,10 @@ const Rereview = () => {
             MasterReactComponent : UsePopCorn App
           </h4>
           <UsePopcorn />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            Challenge : Text Expander
+          </h4>
+          <TextExpanderComponent />
         </div>
       </div>
     </>
