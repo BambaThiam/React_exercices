@@ -16,6 +16,7 @@ import EatNSplit from './EatNSplit'
 import UsePopcorn from './UsePopcorn'
 import StarRating from './StarRating'
 import TextExpanderComponent from './TextExpander'
+import Walkthrough from './Walkthrough'
 
 const Rereview = () => {
   return (
@@ -95,6 +96,10 @@ const Rereview = () => {
             Challenge : Text Expander
           </h4>
           <TextExpanderComponent />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            Walkthrough
+          </h4>
+          <Walkthrough />
         </div>
       </div>
     </>
