@@ -79,8 +79,7 @@ const Logo = () => {
   )
 }
 
-const Search = () => {
-  const [query, setQuery] = useState('')
+const Search = ({ query, setQuery }) => {
   return (
     <input
       className="search"
@@ -223,19 +222,36 @@ const ErrorMessage = ({ message }) => {
 const KEY = 'f775b157'
 
 const UsePopcornEffect = () => {
+  const [query, setQuery] = useState('')
   const [movies, setMovies] = useState([])
   const [watched, setWatched] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const query = 'batman'
-  // const query = 'fdgsdhdfjdh'
+  const tempQuery = 'inception'
+  // const tempQuery = 'fdgsdhdfjdh'
+
+  // useEffect(() => {
+  //   console.log('After first render')
+  // }, [])
+
+  // useEffect(() => {
+  //   console.log('After every render')
+  // })
+
+  // console.log('During render')
+
+  // useEffect(() => {
+  //   console.log('Bamba')
+  // }, [query])
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         setIsLoading(true)
+        setError('')
         const response = await fetch(
+          // `https://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`
           `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
         )
         if (!response.ok) {
@@ -248,21 +264,27 @@ const UsePopcornEffect = () => {
 
         setMovies(data.Search)
       } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
         setError(err.message)
       } finally {
         setIsLoading(false)
       }
     }
 
+    if (!query.length < 3) {
+      setMovies([])
+      setError('')
+      return
+    }
+
     fetchMovies()
-  }, [])
+  }, [query])
 
   return (
     <>
       <div className="appUsePopcorn">
         <Navbar>
-          <Search />
+          <Search query={query} setQuery={setQuery} />
           <Numresults movies={movies} />
         </Navbar>
         <Main>
