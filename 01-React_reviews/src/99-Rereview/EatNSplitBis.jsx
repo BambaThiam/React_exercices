@@ -231,7 +231,10 @@ const EatNSplitBis = () => {
 
   return (
     <>
-      <div>EatNSplitBis : Partage de dépenses with key props</div>
+      <div>
+        EatNSplitBis : Partage de dépenses with key props : initialisation
+        fenêtre split quand on selectionne un(e) ami(e)
+      </div>
       <div className="app">
         <div className="sidebar">
           <FriendsList

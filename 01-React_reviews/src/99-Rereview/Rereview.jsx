@@ -18,6 +18,7 @@ import StarRating from './StarRating'
 import TextExpanderComponent from './TextExpander'
 import Walkthrough from './Walkthrough'
 import EatNSplitBis from './EatNSplitBis'
+import UsePopcornEffect from './UsePopcornEffect'
 
 const Rereview = () => {
   return (
@@ -105,6 +106,10 @@ const Rereview = () => {
             Challenge Project : Eat-N-Split with key props
           </h4>
           <EatNSplitBis />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            UsePopCorn App with useEffect
+          </h4>
+          <UsePopcornEffect />
         </div>
       </div>
     </>
