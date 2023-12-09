@@ -36,6 +36,8 @@ const Walkthrough = () => {
   )
 }
 
+console.log(<DifferentContent />)
+
 function Tabbed({ content }) {
   const [activeTab, setActiveTab] = useState(0)
 

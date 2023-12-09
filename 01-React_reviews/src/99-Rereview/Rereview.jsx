@@ -17,6 +17,7 @@ import UsePopcorn from './UsePopcorn'
 import StarRating from './StarRating'
 import TextExpanderComponent from './TextExpander'
 import Walkthrough from './Walkthrough'
+import EatNSplitBis from './EatNSplitBis'
 
 const Rereview = () => {
   return (
@@ -100,6 +101,10 @@ const Rereview = () => {
             Walkthrough
           </h4>
           <Walkthrough />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold">
+            Challenge Project : Eat-N-Split with key props
+          </h4>
+          <EatNSplitBis />
         </div>
       </div>
     </>
