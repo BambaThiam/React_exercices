@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './data/usepopcorn.css'
 
 const tempMovieData = [
@@ -204,9 +204,24 @@ const Main = ({ children }) => {
   return <main className="main1">{children}</main>
 }
 
+const KEY = 'f775b157'
+
 const UsePopcornEffect = () => {
-  const [movies, setMovies] = useState(tempMovieData)
-  const [watched, setWatched] = useState(tempWatchedData)
+  const [movies, setMovies] = useState([])
+  const [watched, setWatched] = useState([])
+
+  const query = 'batman'
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+      )
+      const data = await response.json()
+      setMovies(data.Search)
+    }
+    fetchMovies()
+  }, [])
 
   return (
     <>
