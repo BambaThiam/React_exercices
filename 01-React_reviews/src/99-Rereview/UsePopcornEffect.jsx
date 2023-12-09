@@ -204,22 +204,57 @@ const Main = ({ children }) => {
   return <main className="main1">{children}</main>
 }
 
+const Loader = () => {
+  return (
+    <div className="loader">
+      <span>Loading...</span>
+    </div>
+  )
+}
+
+const ErrorMessage = ({ message }) => {
+  return (
+    <div className="error">
+      <span>❌{message}</span>
+    </div>
+  )
+}
+
 const KEY = 'f775b157'
 
 const UsePopcornEffect = () => {
   const [movies, setMovies] = useState([])
   const [watched, setWatched] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const query = 'batman'
+  // const query = 'fdgsdhdfjdh'
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      )
-      const data = await response.json()
-      setMovies(data.Search)
+      try {
+        setIsLoading(true)
+        const response = await fetch(
+          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        )
+        if (!response.ok) {
+          throw new Error('Something went wrong with fetching movies')
+        }
+        const data = await response.json()
+        if (data.Response === 'False') {
+          throw new Error(data.Error)
+        }
+
+        setMovies(data.Search)
+      } catch (err) {
+        console.error(err.message)
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
     }
+
     fetchMovies()
   }, [])
 
@@ -232,7 +267,10 @@ const UsePopcornEffect = () => {
         </Navbar>
         <Main>
           <Box movies={movies}>
-            <MovieList movies={movies} />
+            {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
+            {isLoading && <Loader />}
+            {!isLoading && !error && <MovieList movies={movies} />}
+            {error && <ErrorMessage message={error} />}
           </Box>
           <Box movies={movies}>
             <WatchedSummary watched={watched} />
