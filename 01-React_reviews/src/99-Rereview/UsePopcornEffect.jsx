@@ -285,6 +285,11 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
   useEffect(() => {
     if (!title) return
     document.title = `Movie | ${title}`
+
+    // clean up function
+    return () => {
+      document.title = 'Bamba_Usepopcorn'
+    }
   }, [title])
 
   return (
@@ -387,12 +392,15 @@ const UsePopcornEffect = () => {
   }
 
   useEffect(() => {
+    const controller = new AbortController()
+
     const fetchMovies = async () => {
       try {
         setIsLoading(true)
         setError('')
         const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+          { signal: controller.signal }
         )
         if (!response.ok) {
           throw new Error('Something went wrong with fetching movies')
@@ -403,9 +411,13 @@ const UsePopcornEffect = () => {
         }
 
         setMovies(data.Search)
+        setError('')
       } catch (err) {
         // console.error(err.message)
-        setError(err.message)
+        // Pour ignorer l'erreur AbortError qui n'en n'est pas une
+        if (err.name === 'AbortError') {
+          setError(err.message)
+        }
       } finally {
         setIsLoading(false)
       }
@@ -419,6 +431,10 @@ const UsePopcornEffect = () => {
     }
 
     fetchMovies()
+    // clean up function
+    return () => {
+      controller.abort()
+    }
   }, [query])
 
   return (
