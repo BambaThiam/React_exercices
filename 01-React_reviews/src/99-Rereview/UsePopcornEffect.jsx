@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './data/usepopcorn.css'
+import StarComponent from './StarComponent'
 
 const tempMovieData = [
   {
@@ -100,9 +101,9 @@ const Numresults = ({ movies }) => {
   )
 }
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, onSelectMovie }) => {
   return (
-    <li key={movie.imdbID}>
+    <li key={movie.imdbID} onClick={() => onSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -115,11 +116,11 @@ const Movie = ({ movie }) => {
   )
 }
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, onSelectMovie }) => {
   return (
-    <ul className="list1">
+    <ul className="list1 list-movies">
       {movies?.map((movie) => (
-        <Movie key={movie.imdbID} movie={movie} />
+        <Movie key={movie.imdbID} movie={movie} onSelectMovie={onSelectMovie} />
       ))}
     </ul>
   )
@@ -219,17 +220,88 @@ const ErrorMessage = ({ message }) => {
   )
 }
 
+const MovieDetails = ({ selectedId, onCloseMovie }) => {
+  const [movie, setMovie] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  const {
+    Title: title,
+    Year: year,
+    Poster: poster,
+    Runtime: runtime,
+    imdbRating,
+    Plot: plot,
+    Actors: actors,
+    Genre: genre,
+    Director: director,
+    Released: released,
+  } = movie
+
+  useEffect(() => {
+    const getMovieDetails = async () => {
+      setIsLoading(true)
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+      )
+      const data = await response.json()
+      // console.log(data)
+      setMovie(data)
+      setIsLoading(false)
+    }
+
+    getMovieDetails()
+  }, [selectedId])
+
+  return (
+    <div className="details">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <header>
+            {/* <h2>Selected movie</h2> */}
+            <button className="btn-back" onClick={onCloseMovie}>
+              &larr;
+            </button>
+            <img src={poster} alt={`${title} poster`} />
+            <div className="details-overview">
+              <h2>{title}</h2>
+              <p>
+                {released} &bull; {runtime}
+              </p>
+              <p>{genre}</p>
+              <p>
+                <span>⭐️</span>
+                <span>{imdbRating} IMDb rating</span>
+              </p>
+            </div>
+          </header>
+          <section>
+            <div className="rating">
+              <StarComponent maxRating={10} size={24} />
+            </div>
+
+            <p>
+              <em>{plot}</em>
+            </p>
+            <p>Starring {actors}</p>
+            <p>Directed by {director}</p>
+          </section>
+        </>
+      )}
+    </div>
+  )
+}
+
 const KEY = 'f775b157'
 
 const UsePopcornEffect = () => {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('Inception')
   const [movies, setMovies] = useState([])
   const [watched, setWatched] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-
-  const tempQuery = 'inception'
-  // const tempQuery = 'fdgsdhdfjdh'
+  const [selectedId, setSelectedId] = useState(null)
 
   // useEffect(() => {
   //   console.log('After first render')
@@ -245,13 +317,20 @@ const UsePopcornEffect = () => {
   //   console.log('Bamba')
   // }, [query])
 
+  const handleSelectMovie = (id) => {
+    setSelectedId((selectedId) => (selectedId === id ? null : id))
+  }
+
+  const handleCloseMovie = () => {
+    setSelectedId(null)
+  }
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         setIsLoading(true)
         setError('')
         const response = await fetch(
-          // `https://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`
           `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`
         )
         if (!response.ok) {
@@ -271,7 +350,8 @@ const UsePopcornEffect = () => {
       }
     }
 
-    if (!query.length < 3) {
+    // if (!query.length) {
+    if (query.length < 3) {
       setMovies([])
       setError('')
       return
@@ -291,12 +371,23 @@ const UsePopcornEffect = () => {
           <Box movies={movies}>
             {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
             {isLoading && <Loader />}
-            {!isLoading && !error && <MovieList movies={movies} />}
+            {!isLoading && !error && (
+              <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+            )}
             {error && <ErrorMessage message={error} />}
           </Box>
           <Box movies={movies}>
-            <WatchedSummary watched={watched} />
-            <WatchedMoviesList watched={watched} />
+            {selectedId ? (
+              <MovieDetails
+                selectedId={selectedId}
+                onCloseMovie={handleCloseMovie}
+              />
+            ) : (
+              <>
+                <WatchedSummary watched={watched} />
+                <WatchedMoviesList watched={watched} />
+              </>
+            )}
           </Box>
         </Main>
       </div>
