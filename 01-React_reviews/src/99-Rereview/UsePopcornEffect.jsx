@@ -267,6 +267,21 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     onCloseMovie()
   }
 
+  // Listning to a KeyPress event
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onCloseMovie()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onCloseMovie])
+
   useEffect(() => {
     const getMovieDetails = async () => {
       setIsLoading(true)
@@ -354,7 +369,7 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
 const KEY = 'f775b157'
 
 const UsePopcornEffect = () => {
-  const [query, setQuery] = useState('Inception')
+  const [query, setQuery] = useState('')
   const [movies, setMovies] = useState([])
   const [watched, setWatched] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -413,9 +428,9 @@ const UsePopcornEffect = () => {
         setMovies(data.Search)
         setError('')
       } catch (err) {
-        // console.error(err.message)
         // Pour ignorer l'erreur AbortError qui n'en n'est pas une
         if (err.name === 'AbortError') {
+          // console.error(err.message)
           setError(err.message)
         }
       } finally {
@@ -430,6 +445,7 @@ const UsePopcornEffect = () => {
       return
     }
 
+    handleCloseMovie()
     fetchMovies()
     // clean up function
     return () => {
