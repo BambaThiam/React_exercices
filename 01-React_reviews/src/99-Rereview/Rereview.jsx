@@ -19,6 +19,7 @@ import TextExpanderComponent from './TextExpander'
 import Walkthrough from './Walkthrough'
 import EatNSplitBis from './EatNSplitBis'
 import UsePopcornEffect from './UsePopcornEffect'
+import CurrencyConverter from './CurrencyConverter'
 
 const Rereview = () => {
   return (
@@ -110,6 +111,10 @@ const Rereview = () => {
             UsePopCorn App with useEffect
           </h4>
           <UsePopcornEffect />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            Currency Converter Challenge
+          </h4>
+          <CurrencyConverter />
         </div>
       </div>
     </>
