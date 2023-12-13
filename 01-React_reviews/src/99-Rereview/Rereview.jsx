@@ -20,6 +20,7 @@ import Walkthrough from './Walkthrough'
 import EatNSplitBis from './EatNSplitBis'
 import UsePopcornEffect from './UsePopcornEffect'
 import CurrencyConverter from './CurrencyConverter'
+import UsePopcornCustom_Hook from './Custom_Hooks/UsePopcornCustom_Hook'
 
 const Rereview = () => {
   return (
@@ -115,6 +116,10 @@ const Rereview = () => {
             Currency Converter Challenge
           </h4>
           <CurrencyConverter />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            Custom Hooks
+          </h4>
+          <UsePopcornCustom_Hook />
         </div>
       </div>
     </>
