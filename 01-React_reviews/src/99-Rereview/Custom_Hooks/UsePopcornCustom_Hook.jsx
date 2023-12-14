@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import '../data/usepopcorn.css'
 import StarComponent from '../StarComponent'
+import { useMovies } from './useMovies'
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0)
@@ -339,10 +340,9 @@ const KEY = 'f775b157'
 
 const UsePopcornCustom_Hook = () => {
   const [query, setQuery] = useState('')
-  const [movies, setMovies] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
   const [selectedId, setSelectedId] = useState(null)
+
+  const { movies, isLoading, error } = useMovies(query, handleCloseMovie)
 
   // const [watched, setWatched] = useState([])
   const [watched, setWatched] = useState(() => {
@@ -354,7 +354,7 @@ const UsePopcornCustom_Hook = () => {
     setSelectedId((selectedId) => (selectedId === id ? null : id))
   }
 
-  const handleCloseMovie = () => {
+  function handleCloseMovie() {
     setSelectedId(null)
   }
 
@@ -380,52 +380,7 @@ const UsePopcornCustom_Hook = () => {
     localStorage.setItem('watched', JSON.stringify(watched))
   }, [watched])
 
-  useEffect(() => {
-    const controller = new AbortController()
-
-    const fetchMovies = async () => {
-      try {
-        setIsLoading(true)
-        setError('')
-        const response = await fetch(
-          `https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-          { signal: controller.signal }
-        )
-        if (!response.ok) {
-          throw new Error('Something went wrong with fetching movies')
-        }
-        const data = await response.json()
-        if (data.Response === 'False') {
-          throw new Error(data.Error)
-        }
-
-        setMovies(data.Search)
-        setError('')
-      } catch (err) {
-        // Pour ignorer l'erreur AbortError qui n'en n'est pas une
-        if (err.name === 'AbortError') {
-          // console.error(err.message)
-          setError(err.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    // if (!query.length) {
-    if (query.length < 3) {
-      setMovies([])
-      setError('')
-      return
-    }
-
-    handleCloseMovie()
-    fetchMovies()
-    // clean up function
-    return () => {
-      controller.abort()
-    }
-  }, [query])
+  // custom hook
 
   return (
     <>
