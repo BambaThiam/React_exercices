@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
 const KEY = 'f775b157'
-export const useMovies = (query, callback) => {
+export const useMovies = (query) => {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    callback?.()
+    // callback?.()
 
     const controller = new AbortController()
 
@@ -53,7 +53,7 @@ export const useMovies = (query, callback) => {
     return () => {
       controller.abort()
     }
-  }, [query, callback])
+  }, [query])
 
   return {
     movies,

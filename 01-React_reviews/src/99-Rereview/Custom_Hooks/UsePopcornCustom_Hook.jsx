@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import '../data/usepopcorn.css'
 import StarComponent from '../StarComponent'
 import { useMovies } from './useMovies'
+import { useLocalStorageState } from './useLocalStorage'
+import { useKey } from './useKey'
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0)
@@ -27,20 +29,11 @@ const Logo = () => {
 const Search = ({ query, setQuery }) => {
   const inputEl = useRef(null)
 
-  useEffect(() => {
-    const callback = (e) => {
-      if (document.activeElement === inputEl.current) return
-      if (e.key === 'Enter') {
-        inputEl.current.focus()
-        setQuery('')
-      }
-    }
-
-    document.addEventListener('keydown', callback)
-    return () => {
-      document.addEventListener('keydown', callback)
-    }
-  }, [setQuery])
+  useKey('Enter', () => {
+    if (document.activeElement === inputEl.current) return
+    inputEl.current.focus()
+    setQuery('')
+  })
 
   return (
     <input
@@ -237,20 +230,7 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     onCloseMovie()
   }
 
-  // Listning to a KeyPress event
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onCloseMovie()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [onCloseMovie])
+  useKey('Escape', onCloseMovie)
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -342,13 +322,9 @@ const UsePopcornCustom_Hook = () => {
   const [query, setQuery] = useState('')
   const [selectedId, setSelectedId] = useState(null)
 
-  const { movies, isLoading, error } = useMovies(query, handleCloseMovie)
+  const { movies, isLoading, error } = useMovies(query)
 
-  // const [watched, setWatched] = useState([])
-  const [watched, setWatched] = useState(() => {
-    const storedValue = localStorage.getItem('watched')
-    return storedValue ? JSON.parse(storedValue) : []
-  })
+  const [watched, setWatched] = useLocalStorageState([], 'watched')
 
   const handleSelectMovie = (id) => {
     setSelectedId((selectedId) => (selectedId === id ? null : id))
@@ -360,27 +336,11 @@ const UsePopcornCustom_Hook = () => {
 
   const handleAddWatched = (movie) => {
     setWatched((watched) => [...watched, movie])
-
-    // option 1 : In handlefunction
-    // localStorage.setItem(
-    //   'watched',
-    //   // on transforme le tableau watched en chaine de caractère
-    //   JSON.stringify([
-    //     ...watched, // on copie tout le tableau watched
-    //     movie, // on ajoute le nouveau film
-    //   ])
-    // )
   }
 
   const handleDeleteWatched = (id) => {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id))
   }
-
-  useEffect(() => {
-    localStorage.setItem('watched', JSON.stringify(watched))
-  }, [watched])
-
-  // custom hook
 
   return (
     <>
