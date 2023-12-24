@@ -21,6 +21,7 @@ import EatNSplitBis from './EatNSplitBis'
 import UsePopcornEffect from './UsePopcornEffect'
 import CurrencyConverter from './CurrencyConverter'
 import UsePopcornCustom_Hook from './Custom_Hooks/UsePopcornCustom_Hook'
+import UseGeolocateHook from './Custom_Hooks/useGeolocateHook'
 
 const Rereview = () => {
   return (
@@ -117,9 +118,13 @@ const Rereview = () => {
           </h4>
           <CurrencyConverter />
           <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
-            Custom Hooks
+            Custom Hooks_ usePopcorn
           </h4>
           <UsePopcornCustom_Hook />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            Custom Hooks_challenge_useGeolocate
+          </h4>
+          <UseGeolocateHook />
         </div>
       </div>
     </>
