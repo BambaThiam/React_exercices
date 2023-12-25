@@ -22,6 +22,7 @@ import UsePopcornEffect from './UsePopcornEffect'
 import CurrencyConverter from './CurrencyConverter'
 import UsePopcornCustom_Hook from './Custom_Hooks/UsePopcornCustom_Hook'
 import UseGeolocateHook from './Custom_Hooks/useGeolocateHook'
+import UseReducerApp from './UseReducer/UseReducerApp'
 
 const Rereview = () => {
   return (
@@ -125,6 +126,10 @@ const Rereview = () => {
             Custom Hooks_challenge_useGeolocate
           </h4>
           <UseGeolocateHook />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            useReducer
+          </h4>
+          <UseReducerApp />
         </div>
       </div>
     </>
