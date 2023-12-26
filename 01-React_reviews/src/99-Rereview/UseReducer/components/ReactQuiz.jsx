@@ -4,6 +4,7 @@ import Header from './Header'
 import Main from './Main'
 import Loader from './Loader'
 import StartScreen from './StartScreen'
+import Question from './Question'
 
 const initialState = {
   questions: [],
@@ -17,6 +18,8 @@ const reducer = (state, action) => {
       return { ...state, questions: action.payload, status: 'ready' }
     case 'dataFailed':
       return { ...state, status: 'error' }
+    case 'start':
+      return { ...state, status: 'active' }
 
     default:
       throw new Error('Action inconnue')
@@ -48,7 +51,10 @@ const ReactQuiz = () => {
         <Main className="main2">
           {status === 'loading' && <Loader />}
           {status === 'error' && <Loader />}
-          {status === 'ready' && <StartScreen numQuestions={numQuestions} />}
+          {status === 'ready' && (
+            <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+          )}
+          {status === 'active' && <Question />}
         </Main>
       </div>
     </div>
