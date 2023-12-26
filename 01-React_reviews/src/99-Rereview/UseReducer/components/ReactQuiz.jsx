@@ -2,6 +2,8 @@ import React, { useEffect, useReducer } from 'react'
 import index from './index.css'
 import Header from './Header'
 import Main from './Main'
+import Loader from './Loader'
+import StartScreen from './StartScreen'
 
 const initialState = {
   questions: [],
@@ -22,6 +24,10 @@ const reducer = (state, action) => {
 }
 const ReactQuiz = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const { questions, status } = state
+
+  const numQuestions = questions.length
+
   useEffect(() => {
     fetch('http://localhost:8000/questions').then((response) => {
       response
@@ -40,8 +46,9 @@ const ReactQuiz = () => {
       <div className="app2">
         <Header />
         <Main className="main2">
-          <p>1/15</p>
-          <p>Questions?</p>
+          {status === 'loading' && <Loader />}
+          {status === 'error' && <Loader />}
+          {status === 'ready' && <StartScreen numQuestions={numQuestions} />}
         </Main>
       </div>
     </div>
