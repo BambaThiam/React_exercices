@@ -5,6 +5,7 @@ import Main from './Main'
 import Loader from './Loader'
 import StartScreen from './StartScreen'
 import Question from './Question'
+import NextButton from './NextButton'
 
 const initialState = {
   questions: [],
@@ -32,6 +33,14 @@ const reducer = (state, action) => {
           action.payload === question.correctOption
             ? state.points + question.points
             : state.points,
+      }
+    case 'nextQuestion':
+      return {
+        ...state,
+        answer: null,
+        index: state.index + 1,
+        status:
+          state.index + 1 < state.questions.length ? 'active' : 'finished',
       }
 
     default:
@@ -68,11 +77,15 @@ const ReactQuiz = () => {
             <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
           )}
           {status === 'active' && (
-            <Question
-              question={questions[index]}
-              answer={answer}
-              dispatch={dispatch}
-            />
+            <>
+              <Question
+                question={questions[index]}
+                answer={answer}
+                dispatch={dispatch}
+              />
+
+              <NextButton dispatch={dispatch} answer={answer} />
+            </>
           )}
         </Main>
       </div>
