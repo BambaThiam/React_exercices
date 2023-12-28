@@ -1,13 +1,12 @@
 import React from 'react'
+import Options from './Options'
 
-const Question = () => {
+const Question = ({ question, dispatch, answer }) => {
+  console.log(question)
   return (
     <div>
-      <p>Question 1</p>
-      <p>Question 2</p>
-      <p>Question 3</p>
-      <p>Question 4</p>
-      <p>Question 5</p>
+      <h4>{question.question}</h4>
+      <Options question={question} dispatch={dispatch} answer={answer} />
     </div>
   )
 }

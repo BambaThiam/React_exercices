@@ -10,9 +10,13 @@ const initialState = {
   questions: [],
   // "loading" | "ready" | "error" | "finished" | "active"
   status: 'loading',
+  index: 0,
+  answer: null,
+  points: 0,
 }
 
 const reducer = (state, action) => {
+  const question = state.questions.at(state.index)
   switch (action.type) {
     case 'dataReceived':
       return { ...state, questions: action.payload, status: 'ready' }
@@ -20,6 +24,15 @@ const reducer = (state, action) => {
       return { ...state, status: 'error' }
     case 'start':
       return { ...state, status: 'active' }
+    case 'newAnswer':
+      return {
+        ...state,
+        answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points,
+      }
 
     default:
       throw new Error('Action inconnue')
@@ -27,7 +40,7 @@ const reducer = (state, action) => {
 }
 const ReactQuiz = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { questions, status } = state
+  const { questions, status, index, answer } = state
 
   const numQuestions = questions.length
 
@@ -54,7 +67,13 @@ const ReactQuiz = () => {
           {status === 'ready' && (
             <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
           )}
-          {status === 'active' && <Question />}
+          {status === 'active' && (
+            <Question
+              question={questions[index]}
+              answer={answer}
+              dispatch={dispatch}
+            />
+          )}
         </Main>
       </div>
     </div>
