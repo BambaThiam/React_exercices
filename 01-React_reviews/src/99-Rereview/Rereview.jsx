@@ -23,6 +23,7 @@ import CurrencyConverter from './CurrencyConverter'
 import UsePopcornCustom_Hook from './Custom_Hooks/UsePopcornCustom_Hook'
 import UseGeolocateHook from './Custom_Hooks/useGeolocateHook'
 import UseReducerApp from './UseReducer/UseReducerApp'
+import ReactRouter from './React_Router/ReactRouter'
 
 const Rereview = () => {
   return (
@@ -130,6 +131,10 @@ const Rereview = () => {
             useReducer
           </h4>
           <UseReducerApp />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            React Router
+          </h4>
+          <ReactRouter />
         </div>
       </div>
     </>

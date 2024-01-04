@@ -7,6 +7,7 @@ import StartScreen from './StartScreen'
 import Question from './Question'
 import NextButton from './NextButton'
 import Progress from './Progress'
+import FinishScreen from './FinishScreen'
 
 const initialState = {
   questions: [],
@@ -43,6 +44,15 @@ const reducer = (state, action) => {
         status:
           state.index + 1 < state.questions.length ? 'active' : 'finished',
       }
+    case 'finish':
+      return {
+        ...state,
+        status: 'finished',
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
+      }
+    case 'restart':
+      return initialState
 
     default:
       throw new Error('Action inconnue')
@@ -96,8 +106,19 @@ const ReactQuiz = () => {
                 dispatch={dispatch}
               />
 
-              <NextButton dispatch={dispatch} answer={answer} />
+              <NextButton
+                dispatch={dispatch}
+                answer={answer}
+                index={index}
+                numQuestions={numQuestions}
+              />
             </>
+          )}
+          {status === 'finished' && (
+            <FinishScreen
+              points={points}
+              maxPossiblePoints={maxPossiblePoints}
+            />
           )}
         </Main>
       </div>
