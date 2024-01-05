@@ -1,8 +1,11 @@
 .product {
+ 
+
   margin: 2.5rem;
   padding: 2.5rem 5rem;
   background-color: var(--color-dark--1);
   min-height: calc(100vh - 5rem);
+  color: blanchedalmond;
 }
 
 .product section {
@@ -14,9 +17,9 @@
   align-items: center;
 }
 
-.product img {
+/* .product img {
   width: 100%;
-}
+} */
 
 .product h2 {
   font-size: 4rem;

@@ -9,6 +9,7 @@
   background-size: cover;
   background-position: center;
   padding: 2.5rem 5rem;
+  color: blanchedalmond;
 }
 
 .homepage section {
@@ -21,12 +22,24 @@
   text-align: center;
 }
 
-.homepage h1 {
+/* .homepage h1 {
   font-size: 4.5rem;
   line-height: 1.3;
+} */
+.homepageTitleh1{
+  font-size: 4.5rem;
+  line-height: 1.3;
+  background: none;
+  
 }
 
-.homepage h2 {
+/* .homepage h2 {
+  width: 90%;
+  font-size: 1.9rem;
+  color: var(--color-light--1);
+  margin-bottom: 2.5rem;
+} */
+.homepageTitleh2 {
   width: 90%;
   font-size: 1.9rem;
   color: var(--color-light--1);
