@@ -24,6 +24,7 @@ import UsePopcornCustom_Hook from './Custom_Hooks/UsePopcornCustom_Hook'
 import UseGeolocateHook from './Custom_Hooks/useGeolocateHook'
 import UseReducerApp from './UseReducer/UseReducerApp'
 import ReactRouter from './React_Router/ReactRouter'
+import ContexAPI from './ContextAPI/ContexAPI'
 
 const Rereview = () => {
   return (
@@ -135,6 +136,10 @@ const Rereview = () => {
             React Router
           </h4>
           <ReactRouter />
+          <h4 className="underline decoration-pink-500 bg-indigo-300 w-1/2 rounded-lg p-2 font-bold mt-10">
+            Context API
+          </h4>
+          <ContexAPI />
         </div>
       </div>
     </>
